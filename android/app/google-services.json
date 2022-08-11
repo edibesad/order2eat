@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1076191631945",
+    "project_id": "checkout-a367a",
+    "storage_bucket": "checkout-a367a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076191631945:android:b87fdb34c256a1ff8ebd98",
+        "android_client_info": {
+          "package_name": "com.example.order2eat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076191631945-e7f5crrd47krp56ocripvppnp6gs6ug0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ2n5PCvXgn1iTRKd5WMaBMYa_M7Xat-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076191631945-e7f5crrd47krp56ocripvppnp6gs6ug0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
