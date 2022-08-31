@@ -21,10 +21,9 @@ class MenusGridView extends ConsumerWidget {
           child: GridView.builder(
               itemCount: filteredMenus.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4),
+                  crossAxisCount: 6),
               itemBuilder: (context, index) {
-                return Card(
-                    child: MenusGridViewElement(menu: filteredMenus[index]));
+                return MenusGridViewElement(menu: filteredMenus[index]);
               }),
         ),
       ],

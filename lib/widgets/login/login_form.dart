@@ -91,9 +91,11 @@ class _LoginFormState extends State<LoginForm> {
                           });
                     } else {
                       if (ref.read(loginFormCheckBoxProvider.state).state) {
-                        rememberMe(value);
+                        rememberMe(value, _passwordController.text);
                       }
                       ref.read(userProvider.state).state = value;
+                      ref.read(passwordProvider.state).state =
+                          _passwordController.text;
                     }
                   });
                 },
@@ -112,7 +114,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 
-  Future<void> rememberMe(UserModel userModel) async {
+  Future<void> rememberMe(UserModel userModel, String password) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt("id", userModel.user!.id!);
     prefs.setInt("company_id", userModel.user!.companyId!);
@@ -124,6 +126,7 @@ class _LoginFormState extends State<LoginForm> {
         userModel.user!.pictureThumb == null
             ? ""
             : userModel.user!.pictureThumb!);
+    prefs.setString("password", password);
     // prefs.setString("user", userModel.toJson());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order2eat/widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:order2eat/widgets/drawer/app_drawer.dart';
 import 'package:sized_context/sized_context.dart';
 import '../widgets/cash_register/cash_register_menus.dart';
@@ -9,12 +10,14 @@ class CashRegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return context.diagonalInches >= 10 ? showAsRow() : showWithButton(context);
+    print(context.diagonalInches);
+    return context.diagonalInches > 8 ? showAsRow() : showWithButton(context);
   }
 }
 
 showWithButton(BuildContext context) {
   return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       drawer: const AppDrawer(),
       appBar: AppBar(title: const Text("Cash Register")),
       floatingActionButton: FloatingActionButton(
@@ -30,6 +33,7 @@ showWithButton(BuildContext context) {
 
 Scaffold showAsRow() {
   return Scaffold(
+    bottomNavigationBar: BottomNavBar(),
     drawer: const AppDrawer(),
     appBar: AppBar(title: const Text("Cash Register")),
     body: SafeArea(

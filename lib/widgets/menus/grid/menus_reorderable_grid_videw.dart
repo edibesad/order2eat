@@ -72,9 +72,10 @@ class _MenusReorderableGridViewState
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: context.diagonalInches >= 8 ? 4 : 3),
           itemBuilder: (context, index) {
-            return Card(
-                key: ValueKey(filteredMenus[index].id),
-                child: MenusGridViewElement(menu: filteredMenus[index]));
+            return MenusGridViewElement(
+              menu: filteredMenus[index],
+              key: ValueKey(filteredMenus[index].id),
+            );
           },
           itemCount: filteredMenus.length,
         ))

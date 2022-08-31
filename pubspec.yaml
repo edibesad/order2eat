@@ -44,6 +44,8 @@ dependencies:
   sized_context: ^1.0.0+1
   cached_network_image: ^3.2.1
   webview_flutter: ^3.0.4
+  onesignal_flutter: ^3.4.1
+  font_awesome_flutter: ^10.1.0
 
 
 

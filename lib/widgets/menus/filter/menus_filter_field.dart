@@ -19,12 +19,12 @@ class MenusFilterField extends StatelessWidget {
               flex: 6,
               child: MenusFilterTextField(),
             ),
-            context.diagonalInches >= 10
+            context.diagonalInches >= 9
                 ? MenusFilterDropdown(menus)
                 : Container()
           ],
         ),
-        context.diagonalInches < 10 ? MenusFilterDropdown(menus) : Container()
+        context.diagonalInches <= 8 ? MenusFilterDropdown(menus) : Container()
       ],
     );
   }

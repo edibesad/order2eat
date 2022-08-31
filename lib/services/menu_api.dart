@@ -31,8 +31,8 @@ class MenuApi {
   static Future<List<MenuModel>> getMenusFromFirebase(WidgetRef ref) async {
     List<MenuModel> dbAllMenus = [];
     var formData = FormData.fromMap({
-      "email": "edibesad@gmail.com",
-      "password": "123456",
+      "email": ref.read(userProvider.state).state.user!.email,
+      "password": ref.read(passwordProvider.state).state,
       "api_key": "22dkjer3==(734dv_*mncd))(("
     });
     bool control = false;
@@ -41,7 +41,7 @@ class MenuApi {
 
     QuerySnapshot querySnapshot = await collectionRef.get();
 
-    final fbAllMenus = querySnapshot.docs
+    var fbAllMenus = querySnapshot.docs
         .map((doc) => MenuModel.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
 
@@ -70,7 +70,8 @@ class MenuApi {
           for (var dbMenu in dbElement.menus!) {
             for (var fbMenu in fbElement.menus!) {
               if (fbMenu.id == dbMenu.id) {
-                if (dbMenu.description != fbMenu.description ||
+                if (haveSameMenus(dbMenu.options, fbMenu.options) ||
+                    dbMenu.description != fbMenu.description ||
                     dbMenu.image != fbMenu.image ||
                     dbMenu.imageThumb != fbMenu.imageThumb ||
                     dbMenu.name != fbMenu.name ||
@@ -101,10 +102,12 @@ class MenuApi {
         }
       }
     }
-    //TODO firebase ile databasedeki veriler kontrol edilecek.
 
-    //TODO all_sub_menus ile senkronize olmuyor
     if (control) {
+      QuerySnapshot querySnapshot = await collectionRef.get();
+      fbAllMenus = querySnapshot.docs
+          .map((doc) => MenuModel.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
       FirebaseFirestore.instance
           .collection("subMenus")
           .doc("UGDtwwbLi2TRTLGbfTDc")
@@ -134,9 +137,26 @@ class MenuApi {
           Menus.fromJson(element),
       ];
     });
+    //TODO güncellenmiş menüler yollanacak
 
     return fbAllMenus;
   }
+}
+
+bool haveSameMenus(List<MenuOptions>? dbOptions, List<MenuOptions>? fbOptions) {
+  bool control = false;
+
+  for (var dbOption in dbOptions!) {
+    for (var fbOption in fbOptions!) {
+      if (dbOption.id == fbOption.id) {
+        control = true;
+        break;
+      }
+    }
+    if (!control) return true;
+  }
+
+  return false;
 }
 
 bool isEqual(List<MenuOptions>? dbOptions, List<MenuOptions>? fbOptions) {

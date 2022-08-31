@@ -33,6 +33,8 @@ final loginFormCheckBoxProvider = StateProvider<bool>(((ref) => false));
 
 final menuToOrderProvider = StateProvider<OrderedMenuModel?>(((ref) => null));
 
+final passwordProvider = StateProvider<String?>(((ref) => ""));
+
 final openedPageProvider = StateProvider<Widget>(
   (ref) => const CashRegisterPage(),
 );

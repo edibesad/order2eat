@@ -18,26 +18,31 @@ class MenusGridViewElement extends ConsumerWidget {
               return AlertDialog(content: MenuOrderDialog(menu: menu));
             });
       },
-      child: Stack(
-        children: [
-          // Image.network(menu.imageThumb!),
-          CachedNetworkImage(
-            imageUrl: menu.imageThumb!,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 3),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                menu.name!,
-                style: const TextStyle(color: Colors.white),
+      child: Card(
+        child: Stack(
+          children: [
+            // Image.network(menu.imageThumb!),
+            Positioned.fill(
+              child: CachedNetworkImage(
+                fit: BoxFit.fill,
+                imageUrl: menu.imageThumb!,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 3),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  menu.name!,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -17,7 +17,7 @@ class MenusFilterDropdown extends ConsumerWidget {
       items: [
         DropdownMenuItem(
           value: -1,
-          child: const Text("Popular Menus"),
+          child: const Text("All Menus"),
           onTap: () {
             ref.read(dropdowndMenuValueProvider.state).state = -1;
           },
