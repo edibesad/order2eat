@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -42,7 +43,7 @@ class MenuOrderPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Expanded(child: Text("Quantity")),
+                        const Expanded(child: Text("Amount")),
                         Expanded(
                           child: TextFormField(
                             controller: quantityController,
@@ -58,7 +59,7 @@ class MenuOrderPage extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        const Expanded(child: Text("Price")),
+                        Expanded(child: const Text("price").tr()),
                         Expanded(
                           child: TextFormField(
                             controller: priceController,

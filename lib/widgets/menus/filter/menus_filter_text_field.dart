@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order2eat/providers/all_providers.dart';
@@ -42,7 +43,7 @@ class _MenusFilterTextFieldState extends ConsumerState<MenusFilterTextField> {
             ref.read(menuSearchTextProvider.state).state = "";
           },
         ),
-        hintText: 'Search',
+        hintText: 'search'.tr(),
         hintStyle: const TextStyle(color: Colors.grey, fontSize: 18),
       ),
     );

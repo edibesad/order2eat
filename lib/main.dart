@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -20,11 +23,18 @@ Future<void> main() async {
   OneSignal.shared.setAppId("0f9f7d3d-73cf-4fd1-93c4-53fd621cd481");
 
 // The promptForPushNotificationsWithUserResponse function will show the iOS push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
-  OneSignal.shared.promptUserForPushNotificationPermission().then((accepted) {
-    print("Accepted permission: $accepted");
-  });
+  OneSignal.shared
+      .promptUserForPushNotificationPermission()
+      .then((accepted) {});
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale("en"), Locale("tr")],
+      path: 'assets/translations',
+      fallbackLocale: const Locale("en"),
+      child: const ProviderScope(child: MyApp()),
+    ),
+  );
 }
 
 class MyApp extends ConsumerStatefulWidget {
@@ -44,10 +54,15 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   build(BuildContext context) {
     UserModel userModel = ref.watch(userProvider.state).state;
+    context.setLocale(Locale("tr"));
     return MaterialApp(
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        
         primarySwatch: Colors.red,
         textTheme: const TextTheme(
           bodyText1: TextStyle(fontSize: 16.0),

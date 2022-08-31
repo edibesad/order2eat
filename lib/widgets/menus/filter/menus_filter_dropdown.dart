@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order2eat/models/menu_model.dart';
@@ -13,11 +14,11 @@ class MenusFilterDropdown extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DropdownButton<int>(
       value: ref.watch(dropdowndMenuValueProvider),
-      hint: const Text("Choose a menu..."),
+      hint: const Text("choose").tr(),
       items: [
         DropdownMenuItem(
           value: -1,
-          child: const Text("All Menus"),
+          child: const Text("all_menus").tr(),
           onTap: () {
             ref.read(dropdowndMenuValueProvider.state).state = -1;
           },

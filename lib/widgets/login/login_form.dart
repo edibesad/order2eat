@@ -1,5 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order2eat/constants/ui_helper.dart';
@@ -34,12 +35,12 @@ class _LoginFormState extends State<LoginForm> {
                 controller: _emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Username cannot be empty ';
+                    return 'username_empty'.tr();
                   }
                   return null;
                 },
                 style: const TextStyle(),
-                decoration: UIHelper.getTextFieldDecoration("Username")),
+                decoration: UIHelper.getTextFieldDecoration("username".tr())),
           ),
           const SizedBox(height: 10),
           Padding(
@@ -48,7 +49,7 @@ class _LoginFormState extends State<LoginForm> {
                 controller: _passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password cannot be empty ';
+                    return 'password_empty'.tr();
                   }
                   return null;
                 },
@@ -56,13 +57,13 @@ class _LoginFormState extends State<LoginForm> {
                 enableSuggestions: false,
                 autocorrect: false,
                 style: const TextStyle(),
-                decoration: UIHelper.getTextFieldDecoration("Password")),
+                decoration: UIHelper.getTextFieldDecoration("password".tr())),
           ),
           Padding(
             padding: UIHelper.getLoginFormPadding(),
-            child: Row(children: const [
+            child: Row(children: [
               LoginFormCheckBox(),
-              Text("Remember me"),
+              Text("remember_me").tr(),
             ]),
           ),
           Consumer(
@@ -78,14 +79,14 @@ class _LoginFormState extends State<LoginForm> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text("User not found"),
+                              title: const Text("error").tr(),
+                              content: const Text("user_not_found").tr(),
                               actions: [
                                 ElevatedButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: const Text("Ok"))
+                                    child: const Text("ok").tr())
                               ],
                             );
                           });
@@ -101,11 +102,11 @@ class _LoginFormState extends State<LoginForm> {
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.white),
                 child: const Text(
-                  "Login",
+                  "login",
                   style: TextStyle(
                     color: Colors.red,
                   ),
-                ),
+                ).tr(),
               );
             }),
           )

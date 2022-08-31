@@ -18,7 +18,11 @@ class MenusGridViewElement extends ConsumerWidget {
               return AlertDialog(content: MenuOrderDialog(menu: menu));
             });
       },
-      child: Card(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
         child: Stack(
           children: [
             // Image.network(menu.imageThumb!),

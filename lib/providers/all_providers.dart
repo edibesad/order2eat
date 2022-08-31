@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:order2eat/models/user_model.dart';
 import 'package:order2eat/pages/cash_register_page.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../models/menu_model.dart';
 import '../models/ordered_menu_model.dart';
@@ -38,3 +39,6 @@ final passwordProvider = StateProvider<String?>(((ref) => ""));
 final openedPageProvider = StateProvider<Widget>(
   (ref) => const CashRegisterPage(),
 );
+
+final webViewControllerProvider =
+    StateProvider<WebViewController?>(((ref) => null));

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -142,7 +143,7 @@ class MenuOrderDialog extends ConsumerWidget {
                             Navigator.pop(context);
                           }
                         },
-                        child: const Text("Add to basket"))
+                        child: const Text("add_to_basket").tr())
                   ],
                 ),
               )

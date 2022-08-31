@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,11 +6,12 @@ import 'package:order2eat/pages/cash_register_page.dart';
 import 'package:order2eat/pages/webview_page.dart';
 import 'package:order2eat/providers/all_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../models/user_model.dart';
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBar({Key? key}) : super(key: key);
+  const BottomNavBar({Key? key}) : super(key: key);
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -23,7 +25,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Consumer(
       builder: (context, ref, child) {
         return BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 label: "Cash Register",
                 icon: FaIcon(FontAwesomeIcons.cashRegister)),
@@ -41,10 +43,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
             });
             switch (_index) {
               case 0:
-                ref.read(openedPageProvider.state).state = CashRegisterPage();
+                ref.read(openedPageProvider.state).state =
+                    const CashRegisterPage();
                 break;
               case 1:
-                ref.read(openedPageProvider.state).state = WebviewPage();
+                ref.read(openedPageProvider.state).state = const WebviewPage();
                 break;
               case 2:
                 showDialog(
@@ -53,19 +56,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
                     return AlertDialog(
                       actions: [
                         ElevatedButton(
-                            onPressed: () => logout(ref), child: Text("Yes")),
+                            onPressed: () => logout(ref),
+                            child: const Text("yes").tr()),
                         ElevatedButton(
                             onPressed: () => Navigator.pop(context),
-                            child: Text("No"))
+                            child: const Text("no").tr())
                       ],
-                      content: Text("Would you like to log out?"),
+                      content: const Text("logout_ask").tr(),
                     );
                   },
                 );
 
                 break;
             }
-            print(_index);
           },
         );
       },
@@ -76,6 +79,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();
     ref.read(userProvider.state).state = UserModel();
+    // ignore: use_build_context_synchronously
+    if (ref.read(webViewControllerProvider.state).state != null) {
+      ref.read(webViewControllerProvider.state).state!.clearCache();
+      CookieManager().clearCookies();
+    }
     Navigator.pop(context);
   }
 }

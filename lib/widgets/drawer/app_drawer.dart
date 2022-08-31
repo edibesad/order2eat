@@ -60,6 +60,12 @@ class AppDrawer extends StatelessWidget {
 
   logout(WidgetRef ref) async {
     final prefs = await SharedPreferences.getInstance();
+    if (ref.read(webViewControllerProvider.state).state != null) {
+      await ref
+          .read(webViewControllerProvider.state)
+          .state!
+          .loadUrl("https://order2eat.dk/login/logout");
+    }
     prefs.clear();
     ref.read(userProvider.state).state = UserModel();
   }

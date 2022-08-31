@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:order2eat/widgets/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:order2eat/widgets/drawer/app_drawer.dart';
@@ -10,16 +11,22 @@ class CashRegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(context.diagonalInches);
-    return context.diagonalInches > 8 ? showAsRow() : showWithButton(context);
+    return context.diagonalInches > 8
+        ? showAsRow(context)
+        : showWithButton(context);
   }
 }
 
 showWithButton(BuildContext context) {
   return Scaffold(
-      bottomNavigationBar: BottomNavBar(),
-      drawer: const AppDrawer(),
-      appBar: AppBar(title: const Text("Cash Register")),
+      bottomNavigationBar: const BottomNavBar(),
+      appBar: AppBar(
+        title: const Text(
+          "checkout_screen",
+          style: TextStyle(color: Colors.black),
+        ).tr(),
+        backgroundColor: Colors.white,
+      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
@@ -31,11 +38,28 @@ showWithButton(BuildContext context) {
       body: const SafeArea(child: CashRegisterMenus()));
 }
 
-Scaffold showAsRow() {
+Scaffold showAsRow(BuildContext context) {
   return Scaffold(
-    bottomNavigationBar: BottomNavBar(),
     drawer: const AppDrawer(),
-    appBar: AppBar(title: const Text("Cash Register")),
+    appBar: AppBar(
+      leading: Builder(builder: (context) {
+        return IconButton(
+          icon: Icon(
+            Icons.stacked_bar_chart,
+            color: Colors.black,
+          ),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        );
+      }),
+      elevation: 0,
+      title: const Text(
+        "checkout_screen",
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ).tr(),
+      backgroundColor: Colors.white,
+    ),
     body: SafeArea(
       child: Row(
         children: const [

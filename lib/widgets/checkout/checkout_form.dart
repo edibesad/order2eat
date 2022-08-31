@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -27,8 +28,8 @@ class _CheckOutFormState extends State<CheckOutForm> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                "Tax",
-              ),
+                "tax",
+              ).tr(),
               Text(tax.toString())
             ],
           ),
@@ -38,7 +39,7 @@ class _CheckOutFormState extends State<CheckOutForm> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [const Text("Price"), Text(price.toString())],
+          children: [const Text("price").tr(), Text(price.toString())],
         ),
         const Divider(
           thickness: 1,
@@ -65,13 +66,13 @@ class _CheckOutFormState extends State<CheckOutForm> {
                         debugPrint(_radioValue);
                       },
                     ),
-                    const Text("Credit Card")
+                    const Text("credit_card").tr()
                   ],
                 ),
                 Row(
                   children: [
                     Radio(
-                      value: "Mobilie Pay",
+                      value: "Mobile Pay",
                       groupValue: _radioValue,
                       onChanged: (value) {
                         setState(
@@ -82,7 +83,7 @@ class _CheckOutFormState extends State<CheckOutForm> {
                         debugPrint(_radioValue);
                       },
                     ),
-                    const Text("Mobilie Pay")
+                    const Text("mobilepay").tr()
                   ],
                 ),
                 Row(
@@ -99,7 +100,7 @@ class _CheckOutFormState extends State<CheckOutForm> {
                         debugPrint(_radioValue);
                       },
                     ),
-                    const Text("Cash")
+                    const Text("cash").tr()
                   ],
                 ),
                 Row(
@@ -116,7 +117,7 @@ class _CheckOutFormState extends State<CheckOutForm> {
                         debugPrint(_radioValue);
                       },
                     ),
-                    const Text("Sumup")
+                    const Text("sumup").tr()
                   ],
                 ),
                 Row(
@@ -128,13 +129,13 @@ class _CheckOutFormState extends State<CheckOutForm> {
                             checkBoxValue = value!;
                           });
                         }),
-                    const Text("Show Detailed Option"),
+                    const Text("show_detailed_options").tr(),
                   ],
                 ),
                 if (checkBoxValue!) ...showDetailedOptions(),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Checkout"),
+                  child: const Text("checkout").tr(),
                 )
               ],
             ),
@@ -146,20 +147,20 @@ class _CheckOutFormState extends State<CheckOutForm> {
 
   showDetailedOptions() {
     return [
-      TextFormField(decoration: const InputDecoration(hintText: "Notes")),
+      TextFormField(decoration: InputDecoration(hintText: "notes".tr())),
       Row(
         children: [
           if (!isCalculated!)
             DropdownButton<String>(
               value: dropDownValue,
-              items: const [
+              items: [
                 DropdownMenuItem(
                   value: "cash",
-                  child: Text("Discount in cash"),
+                  child: const Text("fix_discount").tr(),
                 ),
                 DropdownMenuItem(
                   value: "procent",
-                  child: Text("Discount in procent"),
+                  child: Text("rate_discount").tr(),
                 ),
               ],
               onChanged: (value) {
@@ -179,7 +180,7 @@ class _CheckOutFormState extends State<CheckOutForm> {
                 onChanged: (value) {
                   discount = double.parse(value);
                 },
-                decoration: const InputDecoration(hintText: "discount"),
+                decoration: InputDecoration(hintText: "discount".tr()),
                 keyboardType: TextInputType.number,
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.digitsOnly
@@ -204,11 +205,11 @@ class _CheckOutFormState extends State<CheckOutForm> {
       if (isCalculated!)
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [const Text("Discount"), Text(discount.toString())],
+          children: [const Text("dsicount").tr(), Text(discount.toString())],
         ),
       DropdownButton<int>(
         value: estimatedDeliveryTime,
-        hint: const Text("Estimated Delivery Time"),
+        hint: const Text("estimated_delivery_time").tr(),
         items: const [
           DropdownMenuItem(
             value: 15,
@@ -252,15 +253,15 @@ class _CheckOutFormState extends State<CheckOutForm> {
       ),
       DropdownButton<String>(
         value: orderedFrom,
-        hint: const Text("Ordered From"),
-        items: const [
+        hint: const Text("ordered_from").tr(),
+        items: [
           DropdownMenuItem(
             value: "Phone",
-            child: Text("Phone"),
+            child: Text("phone").tr(),
           ),
           DropdownMenuItem(
             value: "Restaurant",
-            child: Text("Restaurant"),
+            child: Text("restaurant").tr(),
           ),
         ],
         onChanged: (value) {
@@ -273,15 +274,15 @@ class _CheckOutFormState extends State<CheckOutForm> {
       ),
       DropdownButton<bool>(
         value: isPayed,
-        hint: const Text("Is payed?"),
-        items: const [
+        hint: const Text("is_payed").tr(),
+        items: [
           DropdownMenuItem(
             value: true,
-            child: Text("Payed"),
+            child: Text("payment_made").tr(),
           ),
           DropdownMenuItem(
             value: false,
-            child: Text("NOT payed"),
+            child: Text("payment_not_made").tr(),
           ),
         ],
         onChanged: (value) {
