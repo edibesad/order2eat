@@ -12,10 +12,10 @@ class UserApi {
       var formData = FormData.fromMap({
         "email": email,
         "password": password,
-        "api_key": "22dkjer3==(734dv_*mncd))(("
+        "api_key": ""
       });
       var response =
-          await Dio().post('https://order2eat.dk/api/getUser', data: formData);
+          await Dio().post('', data: formData);
       if (response.data["error"] == "Kullanıcı Bulunamadı") {
         return null;
       }
