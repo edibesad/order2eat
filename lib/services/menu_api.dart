@@ -12,12 +12,12 @@ class MenuApi {
     // ignore: prefer_typing_uninitialized_variables
     try {
       var formData = FormData.fromMap({
-        "email": "edibesad@gmail.com",
-        "password": "123456",
-        "api_key": "22dkjer3==(734dv_*mncd))(("
+        "email": "",
+        "password": "",
+        "api_key": ""
       });
       var response =
-          await Dio().post('https://order2eat.dk/api/getMenus', data: formData);
+          await Dio().post('', data: formData);
       for (var element in response.data["data"]) {
         menus.add(MenuModel.fromJson(element));
       }
